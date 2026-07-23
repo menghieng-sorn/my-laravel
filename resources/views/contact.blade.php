@@ -3,6 +3,9 @@
     <section>
         <div class="row justify-content-center">
             <div class="col-md-6">
+                @if ()
+
+                @endif
                 <div class="card mt-5 mb-5">
                     <div class="card-body">
                         <form method="POST" action="{{ route('contact.submit') }}">
