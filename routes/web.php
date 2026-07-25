@@ -12,6 +12,8 @@ Route::get('/welcome', function () {
     return view('welcome');
 });
 Route::get('/', [HomeController::class,'index'])->name('home');
+Route::post('/', [HomeController::class,'store'])->name('home');
+
 Route::get('/about',[HomeController::class,'showAboutPage'])->name('about');
 
 Route::get('/single-action', SingleActionController::class);
