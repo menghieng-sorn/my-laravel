@@ -16,7 +16,8 @@ Route::get('/about',[HomeController::class,'showAboutPage'])->name('about');
 
 Route::get('/single-action', SingleActionController::class);
 
-Route::resource('/blog', BlogController::class);
+Route::get('/blog', [BlogController::class,'index']);
+
 Route::get('/contact',[ContactController::class,'index'])->name('contact.index');
 Route::post('/contact',[ContactController::class,'submit'])->name('contact.submit');
 
