@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
     function index()
     {
+        ///Query Builder
+
         //fetch all Data
         //$users = DB::table('users')->get();
 
@@ -31,10 +34,22 @@ class HomeController extends Controller
         //$products = DB::table('products')->min('price');
 
         //sum/avg price
-        $products = DB::table('products')->avg('price');
+        // $products = DB::table('products')->avg('price');
 
-        dd($products);
-        return view('home');
+        /// Eloquent
+        //Insert Data
+        // $user = new User();
+        // $user->name = "Jama";
+        // $user->email = "jama@gmail.com";
+        // $user->password = "123456";
+        // $user->save();
+        // return view('home');
+
+        //Read ALL Data
+        $users = User::all();
+        //Read Single Data
+        $user = User::find(2);
+        dd($user);
     }
     function store()
     {
@@ -63,3 +78,4 @@ class HomeController extends Controller
         return view('about');
     }
 }
+
