@@ -46,10 +46,26 @@ class HomeController extends Controller
         // return view('home');
 
         //Read ALL Data
-        $users = User::all();
+        //$users = User::all();
+
         //Read Single Data
-        $user = User::find(2);
-        dd($user);
+        //$user = User::where('id',1)->first();
+        //$user = User::find(1);
+
+        //Update Data
+        // $user = User::where('id',1)->first();
+        // $user = User::find(1);
+        // $user->email = 'hello@gimail.com';
+        // $user->password = '123';
+        // $user->save();
+
+        //Delete Data
+        // $user = User::find(1);
+        $user = User::findOrFail(1);
+        // $user->delete();
+
+
+        // dd($user);
     }
     function store()
     {
