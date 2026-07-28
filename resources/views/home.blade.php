@@ -17,7 +17,6 @@
     </div>
 </section>
 @include('gallery')
-
 @endsection
 {{--
 @push('script')
