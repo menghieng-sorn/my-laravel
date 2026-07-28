@@ -11,7 +11,7 @@ class BlogController extends Controller
      */
     public function index()
     {
-        $blogs = Blog::all();
+        $blogs = Blog::Active()->get();
         dd($blogs);
     }
 

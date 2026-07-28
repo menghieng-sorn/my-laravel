@@ -103,10 +103,24 @@ class HomeController extends Controller
         //$product = Product::where('name','LIKE','%maxime%')->orWhere('description','LIKE','Debitis')->get();
 
         //$product = Product::whereIn('id',[1,3,4,6,20])->get();
-        $product = Product::whereBetween('price',[100,300])->get();
+        //$product = Product::whereBetween('price',[100,300])->get();
 
+
+        //Sofe Delete and Retore and Delete
+
+        //$product = Product::find(1)->delete();
+        //$product = Product::withTrashed()->find(1);
+        //$product = Product::withTrashed()->get();
+        //$product = Product::onlyTrashed()->get();
+
+        //Restore
+        //$product = Product::where('id',1)->restore();
+        //$product = Product::find(1)->restore();
+
+        //Delete Form Database forever
+        $product = Product::withTrashed()->find(30);
+        $product->forceDelete();
         dd($product);
-
         return view('home');
     }
     function store()
