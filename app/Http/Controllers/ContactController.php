@@ -9,7 +9,7 @@ class ContactController extends Controller
     function index(){
         return view('contact');
     }
-    function submit(Request $request){
+    function store(Request $request){
         $request->validate([
             'name'=>'required|max:20|min:2',
             'subject'=>'required|max:20|min:2'

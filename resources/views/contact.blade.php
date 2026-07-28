@@ -3,12 +3,9 @@
     <section>
         <div class="row justify-content-center">
             <div class="col-md-6">
-                @if ()
-
-                @endif
                 <div class="card mt-5 mb-5">
                     <div class="card-body">
-                        <form method="POST" action="{{ route('contact.submit') }}">
+                        <form method="POST" action="{{ route('contact.store') }}">
                             @csrf
                             <div class="mb-3">
                                 <label for="" class="form-label"></label>Name</label>
@@ -16,8 +13,7 @@
                             </div>
                             <div class="mb-3">
                                 <label for="" class="form-label">Email address</label>
-                                <input type="email" class="form-control" id="exampleInputEmail1"
-                                    aria-describedby="emailHelp">
+                                <input type="email" name="email" class="form-control" id="email" aria-describedby="emailHelp">
                                 <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
                             </div>
                             <div class="mb-3">
@@ -28,7 +24,7 @@
                                 <label for="" class="form-label"></label>Message</label>
                                 <textarea type="text" class="form-control" id="message" name="message"></textarea>
                             </div>
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <button type="submit" name="btn-submit" class="btn btn-primary">Submit</button>
                         </form>
                     </div>
                 </div>

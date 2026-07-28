@@ -118,9 +118,11 @@ class HomeController extends Controller
         //$product = Product::find(1)->restore();
 
         //Delete Form Database forever
-        $product = Product::withTrashed()->find(30);
-        $product->forceDelete();
-        dd($product);
+        // $product = Product::withTrashed()->find(30);
+        // $product->forceDelete();
+        // dd($product);
+
+
         return view('home');
     }
     function store()

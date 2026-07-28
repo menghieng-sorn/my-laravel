@@ -20,6 +20,7 @@ Route::get('/single-action', SingleActionController::class);
 
 Route::get('/blog', [BlogController::class,'index']);
 
+
 Route::get('/contact',[ContactController::class,'index'])->name('contact.index');
-Route::post('/contact',[ContactController::class,'submit'])->name('contact.submit');
+Route::post('/contact',[ContactController::class,'store'])->name('contact.store');
 
