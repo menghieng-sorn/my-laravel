@@ -3,6 +3,13 @@
     <section>
         <div class="row justify-content-center">
             <div class="col-md-6">
+                @if ($errors->any())
+                   <div class="mt-4">
+                        @foreach ($errors->all() as $error )
+                            <div class="alert alert-danger">{{ $error }}</div>
+                        @endforeach
+                   </div>
+                @endif
                 <div class="card mt-5 mb-5">
                     <div class="card-body">
                         <form method="POST" action="{{ route('contact.store') }}">
@@ -13,7 +20,7 @@
                             </div>
                             <div class="mb-3">
                                 <label for="" class="form-label">Email address</label>
-                                <input type="email" name="email" class="form-control" id="email" aria-describedby="emailHelp">
+                                <input type="text" name="email" class="form-control" id="email" aria-describedby="emailHelp">
                                 <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
                             </div>
                             <div class="mb-3">

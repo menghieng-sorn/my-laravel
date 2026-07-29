@@ -10,9 +10,15 @@ class ContactController extends Controller
         return view('contact');
     }
     function store(Request $request){
+        //dd($request->all());
+        // echo $request->input('name');
+        // echo "</br>";
+        // echo $request->email;
+
         $request->validate([
-            'name'=>'required|max:20|min:2',
-            'subject'=>'required|max:20|min:2'
+            'name'=> 'required|min:2|max:20',
+            'email'=> 'required|email'
         ]);
+        dd($request->all());
     }
 }
