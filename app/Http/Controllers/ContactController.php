@@ -12,6 +12,7 @@ class ContactController extends Controller
         return view('contact');
     }
     function store(ContactRequest $request){
+
         //dd($request->all());
         // echo $request->input('name');
         // echo "</br>";
@@ -36,14 +37,13 @@ class ContactController extends Controller
         //         'name.min' => 'The min length of name have to 2 character'
         //     ]
         // );
+
         $contact = new Contact();
         $contact->name = $request->name;
         $contact->email = $request->email;
         $contact->subject = $request->subject;
         $contact->message = $request->message;
         $contact->save();
-
         dd('Saved');
-
     }
 }
