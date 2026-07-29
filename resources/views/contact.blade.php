@@ -16,20 +16,20 @@
                             @csrf
                             <div class="mb-3">
                                 <label for="" class="form-label"></label>Name</label>
-                                <input type="text" class="form-control" id="name" name="name">
+                                <input type="text" class="form-control" id="name" name="name" value="{{ old('name') }}">
                             </div>
                             <div class="mb-3">
                                 <label for="" class="form-label">Email address</label>
-                                <input type="text" name="email" class="form-control" id="email" aria-describedby="emailHelp">
+                                <input type="text" name="email" class="form-control" id="email" value="{{ old('email') }}" aria-describedby="emailHelp">
                                 <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
                             </div>
                             <div class="mb-3">
                                 <label for="" class="form-label"></label>Subject</label>
-                                <input type="text" class="form-control" id="subject" name="subject">
+                                <input type="text" class="form-control" id="subject" name="subject" value="{{ old('subject') }}">
                             </div>
                             <div class="mb-3">
                                 <label for="" class="form-label"></label>Message</label>
-                                <textarea type="text" class="form-control" id="message" name="message"></textarea>
+                                <textarea type="text" class="form-control" id="message" name="message" value='{{ old('message') }}'></textarea>
                             </div>
                             <button type="submit" name="btn-submit" class="btn btn-primary">Submit</button>
                         </form>
