@@ -2,16 +2,19 @@
 
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\FileUploadController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\SingleActionController;
-use App\Models\Blog;
 use Illuminate\Support\Facades\Route;
 
 
 Route::get('/welcome', function () {
     return view('welcome');
 });
+
+Route::resource('/customer', CustomerController::class);
+
 Route::get('/', [HomeController::class,'index'])->name('home');
 Route::post('/', [HomeController::class,'store'])->name('home');
 

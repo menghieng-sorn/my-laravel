@@ -15,7 +15,8 @@ class FileUploadRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'file' => ['required','image']
+            // 'file' => ['required','file','mimes:zip,pdf,csv','max:3000']
         ];
     }
 }

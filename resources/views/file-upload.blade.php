@@ -3,13 +3,13 @@
     <section>
         <div class="row justify-content-center">
             <div class="col-md-6">
-                @if ($errors->any())
+                {{-- @if ($errors->any())
                     <div class="mt-4">
                         @foreach ($errors->all() as $error)
                             <div class="alert alert-danger">{{ $error }}</div>
                         @endforeach
                     </div>
-                @endif
+                @endif --}}
                 <div class="card mt-5 mb-5">
                     <div class="card-body">
                         <form method="POST" action="{{ route('file.store') }}" enctype="multipart/form-data">
@@ -17,6 +17,9 @@
                             <div class="mb-3">
                                 <label for="" class="form-label"></label>Name</label>
                                 <input type="file" class="form-control mt-2" id="file" name="file">
+                                @error('file')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
                             </div>
                             <button type="submit" class="btn btn-primary">Submit</button>
                         </form>

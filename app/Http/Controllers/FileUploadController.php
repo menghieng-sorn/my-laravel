@@ -7,10 +7,16 @@ use App\Models\File;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File as HandlFile;
 
 class FileUploadController extends Controller
 {
     function index(){
+        //Delete File From Database and Storage
+        // $file = File::find(12);
+        // HandlFile::delete(public_path($file->file_path));
+        // $file->delete();
+
         $files = File::all();
         return view('file-upload',['files'=> $files]);
     }
@@ -21,6 +27,7 @@ class FileUploadController extends Controller
 
         //Custum file name
         $file = $request->file('file');
+
 
         $customName = 'laravel_' . Str::uuid();
         $ext = $file->getClientOriginalExtension();
@@ -36,7 +43,9 @@ class FileUploadController extends Controller
         $fileStore->file_path = '/uploads/' . $path;
         $fileStore->save();
 
-        dd('Saved');
+        return redirect()->back();
+        // return redirect()->route('home');
+        //return redirect()->away('https://www.google.com');
     }
     function download(){
         return Storage::disk('local')->download('9UXSdmAV9NSpzFrP557Q3VGLNrcjFxjloJnE9D0F.png');
