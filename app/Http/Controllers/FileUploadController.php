@@ -19,14 +19,14 @@ class FileUploadController extends Controller
         //$file = $request->file('file')->store('/','local');
 
         //Store File on public
-        $file = $request->file('file')->store('/','public');
+        $file = $request->file('file')->store('/','dir_public');
 
         //store to DB
         $fileStore = new File();
-        $fileStore->file_path = $file;
+        $fileStore->file_path = '/uploads/' . $file;
         $fileStore->save();
 
-        dd('Stored');
+        dd('Saved');
     }
     function download(){
         return Storage::disk('local')->download('9UXSdmAV9NSpzFrP557Q3VGLNrcjFxjloJnE9D0F.png');
