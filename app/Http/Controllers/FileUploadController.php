@@ -28,7 +28,6 @@ class FileUploadController extends Controller
         //Custum file name
         $file = $request->file('file');
 
-
         $customName = 'laravel_' . Str::uuid();
         $ext = $file->getClientOriginalExtension();
         $fileName = $customName . '.' . $ext;

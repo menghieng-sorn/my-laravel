@@ -26,6 +26,9 @@
                                 <div class="form-group">
                                     <label for="">Image</label>
                                     <input type="file" name="image" class="form-control">
+                                     @error('image')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="col-md-6 mb-3">
@@ -68,7 +71,7 @@
                                 <div class="form-group">
                                     <label for="">Bank Account Number</label>
                                     <input type="text" name="bank_account_number"  value="{{ old('bank_account_number') }}" class="form-control" >
-                                      @error('bank_account_number')
+                                    @error('bank_account_number')
                                         <span class="text-danger">{{ $message }}</span>
                                     @enderror
                                 </div>
@@ -77,6 +80,9 @@
                                 <div class="form-group">
                                     <label for="">About</label>
                                     <textarea name="about" value="{{ old('about') }}" class="form-control"></textarea>
+                                     @error('about')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="col-md-12 mb-3">
