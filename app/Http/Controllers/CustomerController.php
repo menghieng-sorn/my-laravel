@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CustomerRequest;
 use App\Models\Customer;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\File;
 class CustomerController extends Controller
 {
     /**
@@ -50,32 +50,55 @@ class CustomerController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Customer $customer)
+    public function show(string $id)
     {
-        //
+        $customer = Customer::findOrFail($id);
+        return view('customer.show',compact('customer'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Customer $customer)
+    public function edit(string $id)
     {
-        //
+        $customer = Customer::find($id);
+        return view('customer.edit',compact('customer'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Customer $customer)
+    public function update(CustomerRequest $request, string $id)
     {
-        //
+        $customer = Customer::findOrFail($id);
+
+        if($request->hasFile('image')){
+
+            //Delete Preview Image
+            FIle::delete(public_path($customer->image));
+
+            //handle File
+            $image = $request->file('image');
+            $fileName = $image->store('','dir_public');
+            $filePath = '/uploads/' . $fileName;
+            $customer->image = $filePath;
+        }
+        $customer->first_name = $request->first_name;
+        $customer->last_name = $request->last_name;
+        $customer->email = $request->email;
+        $customer->phone = $request->phone;
+        $customer->bank_account_number = $request->bank_account_number;
+        $customer->about = $request->about;
+        $customer->save();
+        return redirect()->route('customer.index');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Customer $customer)
+    public function destroy(string $id)
     {
-        //
+        $customer = Customer::findOrFail($id)->delete();
+        return view('customer.index',compact('customer'));
     }
 }
