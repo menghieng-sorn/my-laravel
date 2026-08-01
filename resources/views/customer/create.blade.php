@@ -76,7 +76,7 @@
                             <div class="col-md-12 mb-3">
                                 <div class="form-group">
                                     <label for="">About</label>
-                                    <textarea name="about" value="{{ old('about') }}" class="form-control"></textarea>
+                                    <textarea name="about" class="form-control">{{ old('about') }}</textarea>
                                 </div>
                             </div>
                             <div class="col-md-12 mb-3">
