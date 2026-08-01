@@ -5,15 +5,15 @@
 
 <div class="row justify-content-center mt-5">
         <div class="col-md-8">
-            <h3>Customers</h3>
+            <h3>Trash Data</h3>
             <div class="card">
                 <div class="card-header">
                     <div class="row">
                         <div class="col-md-2">
-                            <a href="{{ route('customer.create') }}"  class="btn"
-                                style="background-color: #4643d3; color: white;"><i class="fas fa-plus"></i> Create </a>
+                            <a href="{{ route('customer.index') }}"  class="btn"
+                                style="background-color: #4643d3; color: white;"><i class="fas fa-chevron-left"></i> Back </a>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-8">
                             <form action="{{ route('customer.index') }}" method="GET">
                                 <div class="input-group mb-3">
                                     <input type="text" class="form-control" name="search" placeholder="Search anything..."
@@ -34,12 +34,7 @@
                             </div>
                             </form>
                         </div>
-                         <div class="col-md-2">
-                             <a href="{{ route('customer.trash') }}"  class="btn btn-dark">
-                                <i class="fas fa-trash-alt"></i>
-                                Trash
-                            </a>
-                        </div>
+
                     </div>
 
                 </div>
@@ -66,13 +61,13 @@
                                 <td>{{ $customer->email }}</td>
                                 <td>{{ $customer->bank_account_number }}</td>
                                 <td>
-                                    <a href="{{ route('customer.edit',$customer->id) }}" style="color: #2c2c2c;" class="ms-1 me-1"><i
-                                            class="far fa-edit"></i></a>
-                                    <a href="{{ route('customer.show',$customer->id) }}" style="color: #2c2c2c;" class="ms-1 me-1"><i
-                                            class="far fa-eye"></i></a>
-                                    <a href="javascript:;"  onclick="if(confirm('Are you sure you want to delete this customer?')) $('.form-{{ $customer->id }}').submit()" style="color: #2c2c2c;" class="ms-1 me-1"><i
-                                            class="fas fa-trash-alt"></i></a>
-                                    <form method="POST" class="form-{{ $customer->id }}" action="{{ route('customer.destroy',$customer->id) }}">
+                                    <a href="{{ route('customer.restore',$customer->id) }}" style="color: #2c2c2c;" class="ms-1 me-1">
+                                        <i class="fas fa-redo"></i>
+                                    </a>
+                                    <a href="javascript:;"  onclick="if(confirm('Are you sure you want to delete this customer?')) $('.form-{{ $customer->id }}').submit()" style="color: #2c2c2c;" class="ms-1 me-1">
+                                        <i class="fas fa-trash-alt"></i>
+                                    </a>
+                                    <form method="POST" class="form-{{ $customer->id }} ms-1 me-1" action="{{ route('customer.force.destroy',$customer->id) }}">
                                         @csrf
                                         @method('DELETE')
                                     </form>

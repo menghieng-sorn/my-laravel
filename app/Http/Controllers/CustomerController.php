@@ -19,10 +19,10 @@ class CustomerController extends Controller
         $customers = Customer::when($request->has('search'),function($query) use($request){
             $query->where('first_name', 'LIKE' ,"%$request->search%")
             ->orWhere('last_name', 'LIKE' ,"%$request->search%")
-             ->orWhere('phone', 'LIKE' ,"%$request->search%")
-              ->orWhere('email', 'LIKE' ,"%$request->search%")
-              ->orWhere('bank_account_number', 'LIKE' ,"%$request->search%");
-        })->get();
+            ->orWhere('phone', 'LIKE' ,"%$request->search%")
+            ->orWhere('email', 'LIKE' ,"%$request->search%")
+            ->orWhere('bank_account_number', 'LIKE' ,"%$request->search%");
+        })->orderBy('id', $request->has('order') && $request->order == 'asc' ? 'ASC' : 'DESC')->get();
         return view('customer.index',compact('customers'));
     }
 
@@ -33,7 +33,6 @@ class CustomerController extends Controller
     {
         return view('customer.create');
     }
-
     /**
      * Store a newly created resource in storage.
      */
@@ -107,9 +106,34 @@ class CustomerController extends Controller
      */
     public function destroy(string $id)
     {
-        $customer = Customer::findOrFail($id);
-        File::delete(public_path($customer->image));
+        // $customer = Customer::findOrFail($id);
+        // File::delete(public_path($customer->image));
+        // $customer->delete();
+        // return redirect()->route('customer.index');
+
+         $customer = Customer::findOrFail($id);
         $customer->delete();
         return redirect()->route('customer.index');
+    }
+    public function trashIndex(Request $request){
+        $customers = Customer::when($request->has('search'),function($query) use($request){
+            $query->where('first_name', 'LIKE' ,"%$request->search%")
+            ->orWhere('last_name', 'LIKE' ,"%$request->search%")
+            ->orWhere('phone', 'LIKE' ,"%$request->search%")
+            ->orWhere('email', 'LIKE' ,"%$request->search%")
+            ->orWhere('bank_account_number', 'LIKE' ,"%$request->search%");
+        })->orderBy('id', $request->has('order') && $request->order == 'asc' ? 'ASC' : 'DESC')->onlyTrashed()->get();
+        return view('customer.trash', compact('customers'));
+    }
+    public function restore(int $id){
+        $customer = Customer::onlyTrashed()->findOrFail($id);
+        $customer->restore();
+        return redirect()->back();
+    }
+    public function forceDestroy(int $id){
+        $customer = Customer::onlyTrashed()->findOrFail($id);
+        File::delete(public_path($customer->image));
+        $customer->forceDelete();
+        return redirect()->back();
     }
 }

@@ -12,8 +12,11 @@ use Illuminate\Support\Facades\Route;
 Route::get('/welcome', function () {
     return view('welcome');
 });
-
+Route::delete('/customer/trash/{customer}',[CustomerController::class,'forceDestroy'])->name('customer.force.destroy');
+Route::get('/customer/restore/{customer}',[CustomerController::class,'restore'])->name('customer.restore');
+Route::get('/customer/trash',[CustomerController::class,'trashIndex'])->name('customer.trash');
 Route::resource('/customer', CustomerController::class);
+
 
 Route::get('/', [HomeController::class,'index'])->name('home');
 Route::post('/', [HomeController::class,'store'])->name('home');
