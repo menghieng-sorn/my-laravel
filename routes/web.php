@@ -6,6 +6,7 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\FileUploadController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\JoinController;
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\SingleActionController;
 use Illuminate\Support\Facades\Route;
 
@@ -37,4 +38,7 @@ Route::post('/file-upload',[FileUploadController::class,'store'])->name('file.st
 
 Route::get('/file-download',[FileUploadController::class,'download'])->name('file.download');
 
-Route::get('join',[JoinController::class,'index']);
+Route::get('/join-query-builder',[JoinController::class,'indexQueryBulder']);
+Route::get('/join-orm',[JoinController::class,'indexORM']);
+
+Route::get('/posts',[PostController::class,'index']);

@@ -1,13 +1,15 @@
 <?php
-
 namespace App\Http\Controllers;
 
+use App\Models\Address;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class JoinController extends Controller
 {
-    function index(){
+    //Query Builder Relationship
+    function indexQueryBulder(){
         //Query Builder Inner Join
         // $userWithOrders = DB::table('users')
         // ->join('orders','users.id', '=', 'orders.user_id')
@@ -36,5 +38,12 @@ class JoinController extends Controller
             ->select('users.name','orders.product_name')
         )->get();
         dd($userWithOrders);
+    }
+
+    //Query Builder Relationship
+    function indexORM(){
+        $users = User::all();
+        $addresses = Address::all();
+        return view('address', compact('users','addresses'));
     }
 }
