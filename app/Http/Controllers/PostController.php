@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\City;
+use App\Models\Country;
 use App\Models\Post;
+use App\Models\State;
+use App\Models\Tag;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -23,9 +27,51 @@ class PostController extends Controller
         //         'name'=>'Learn PHP'
         //     ]
         // ]);
+        // Tag::insert([
+        //     [
+        //         'name'=>'Laravel'
+        //     ],
+        //     [
+        //         'name'=>'Java'
+        //     ],
+        //     [
+        //         'name'=>'PHP'
+        //     ]
+        // ]);
         $posts = Post::all();
         $users = User::all();
+
+        // $posts = Post::first();
+        // $tag = Tag::first();
+        // $posts->tags()->attach($tag);
+        // $posts->tags()->attach([2,3]);
+        // $posts->tags()->detach([2]);
+
+        // $posts->tags()->sync([2,3]);
+
         return view('post',compact('posts','users'));
 
+    }
+    function indexTag(){
+        $tags = Tag::all();
+        return view('tag', compact('tags'));
+    }
+    function indexLocation(){
+        // $country = new Country([
+        //     'name'=>'United State'
+        // ]);
+        // $country->save();
+        // $state = new State([
+        //     'name'=>'Califonia'
+        // ]);
+        // $country->states()->save($state);
+
+        // $state->cities()->createMany([
+        //     ['name'=>'Los Angeles'],
+        //     ['name'=>'San Francisco'],
+        // ]);
+
+        $country = Country::first();
+         return view('location', compact('country'));
     }
 }

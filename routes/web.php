@@ -42,3 +42,6 @@ Route::get('/join-query-builder',[JoinController::class,'indexQueryBulder']);
 Route::get('/join-orm',[JoinController::class,'indexORM']);
 
 Route::get('/posts',[PostController::class,'index']);
+Route::get('/tags',[PostController::class,'indexTag']);
+
+Route::get('/locations',[PostController::class,'indexLocation']);

@@ -9,8 +9,14 @@
 <body>
     <div>
         @foreach ($posts as $post)
-            <div>{{ $post->name }}</div>
+            <div>Post Name : {{ $post->name }}</div>
             <div>Author : {{ $post->user->name }}</div>
+            <p>Tags : </p>
+            <ul>
+                @foreach($post->tags as $tag)
+                <li>{{ $tag->name }}</li>
+                @endforeach
+            </ul>
             <hr>
         @endforeach
     </div>
