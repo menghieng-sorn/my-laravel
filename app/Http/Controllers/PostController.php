@@ -74,4 +74,18 @@ class PostController extends Controller
         $country = Country::first();
          return view('location', compact('country'));
     }
+    function indexImage(){
+        // $user = User::find(1);
+        // $user->image()->create([
+        //     'path'=>'/uploads/user_one.jpg'
+        // ]);
+
+        // $post = Post::find(1);
+        // $post->image()->create([
+        //     'path'=>'/uploads/post_one.jpg'
+        // ]);
+
+        $post = Post::find(1);
+        return $post->image;
+    }
 }

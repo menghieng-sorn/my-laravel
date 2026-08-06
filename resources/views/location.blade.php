@@ -13,8 +13,8 @@
        <p>Country : {{ $country->name }}</p>
        <ul>
         @foreach($country->cities as $city_item)
-        <li>{{ $city_item->name }}</li>
-       @endforeach
+            <li>{{ $city_item->name }}</li>
+        @endforeach
        </ul>
       <ul>
          @foreach($country->states as $state)

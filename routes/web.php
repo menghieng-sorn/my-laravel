@@ -45,3 +45,5 @@ Route::get('/posts',[PostController::class,'index']);
 Route::get('/tags',[PostController::class,'indexTag']);
 
 Route::get('/locations',[PostController::class,'indexLocation']);
+
+Route::get('/images',[PostController::class,'indexImage']);
