@@ -8,6 +8,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\JoinController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\SingleActionController;
+use App\Http\Middleware\CheckRoleMiddleware;
 use Illuminate\Support\Facades\Route;
 
 
@@ -43,7 +44,31 @@ Route::get('/join-orm',[JoinController::class,'indexORM']);
 
 Route::get('/posts',[PostController::class,'index']);
 Route::get('/tags',[PostController::class,'indexTag']);
-
 Route::get('/locations',[PostController::class,'indexLocation']);
-
 Route::get('/images',[PostController::class,'indexImage']);
+
+//Middleware
+// Route::get('/post',[PostController::class,'getPost'])->name('post.index');
+// Route::post('/post',[PostController::class,'handlePost'])->name('post.store')
+//     ->middleware(CheckRoleMiddleware::class);
+
+
+//Middleware Route Group
+// Route::get('/post',[PostController::class,'getPost'])->name('post.index');
+// Route::group(['middleware'=> CheckRoleMiddleware::class],function(){
+//     Route::post('/post',[PostController::class,'handlePost'])->name('post.store');
+// });
+
+
+Route::get('/post',[PostController::class,'getPost'])->name('post.index');
+Route::post('/post',[PostController::class,'handlePost'])->name('post.store')
+->middleware(['checkRole']);
+
+
+Route::get('user/dashboard', function(){
+    dd("User Dashboard");
+})->middleware('checkRole:user');
+Route::get('admin/dashboard', function(){
+    dd("Admin Dashboard");
+})->middleware('checkRole:admin');
+
